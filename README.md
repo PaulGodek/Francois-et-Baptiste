@@ -3,6 +3,7 @@
 ## Auteurs
 - **Paul GODEK**
 - **Luca FILIOL**
+- **Baptiste TARRIT**
 
 ---
 
