@@ -1,11 +1,4 @@
-
-
-
-
 // ------------- Frontend Logic ----------------
-
-
-
 
 const taskList = document.getElementById('taskList');
 const addBtn = document.getElementById('addTaskBtn');
@@ -149,10 +142,10 @@ function renderTasks(){
         <button class="delete">✖</button>
       </div>
     `;
-      const tid = getId(t);
-      li.querySelector('.open').onclick = ()=> renderDetail(tid);
-      li.querySelector('.edit').onclick = ()=> openModal(tid);
-      li.querySelector('.delete').onclick = async ()=> { 
+        const tid = getId(t);
+        li.querySelector('.open').onclick = ()=> renderDetail(tid);
+        li.querySelector('.edit').onclick = ()=> openModal(tid);
+        li.querySelector('.delete').onclick = async ()=> { 
         if(confirm('Supprimer cette tâche ?')){ 
           try {
             await deleteTaskAPI(tid);
@@ -168,7 +161,24 @@ function renderTasks(){
             alert('Erreur lors de la suppression: ' + error.message);
           }
         }
-      };
+        };
+
+        // Single-click anywhere on the task (except control buttons) shows the detail.
+        // Double-click opens the edit modal. Use a short timer to distinguish clicks from dblclicks.
+        let clickTimer = null;
+        li.addEventListener('click', (e) => {
+          if (e.target.closest('button')) return;
+          if (clickTimer) clearTimeout(clickTimer);
+          clickTimer = setTimeout(() => {
+            renderDetail(tid);
+            clickTimer = null;
+          }, 220);
+        });
+        li.addEventListener('dblclick', (e) => {
+          if (e.target.closest('button')) return;
+          if (clickTimer) { clearTimeout(clickTimer); clickTimer = null; }
+          openModal(tid);
+        });
     taskList.appendChild(li);
   });
 }

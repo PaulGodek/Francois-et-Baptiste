@@ -1,8 +1,5 @@
 // ---------------- Backend Logic ----------------
 
-
-
-
 import express from 'express';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -24,9 +21,9 @@ const PORT = process.env.PORT || 9000;
 const dbURI = process.env.CONN_STR;
 
 mongoose.connect(dbURI).then(() => {
-  console.log('✅ Connected to MongoDB successfully');
+  console.log('Connected to MongoDB successfully');
 }).catch(err => {
-  console.log('❌ MongoDB connection error: ', err);
+  console.log('MongoDB connection error: ', err);
 });
 
 app.use(express.json());
@@ -41,9 +38,6 @@ app.use('/api/tasks', taskRoutes);
 
 
 // ---------------- INITIALISATION ----------------
-
-
-
 
 // Serve static files from the 'src/public' directory to make them publicaly accessible
 app.use('/public', express.static(path.join(__dirname, 'public')));
