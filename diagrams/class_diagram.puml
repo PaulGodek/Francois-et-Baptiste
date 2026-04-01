@@ -1,0 +1,53 @@
+@startuml class_diagram.puml
+left to right direction
+skinparam packageStyle rectangle
+
+class "Task (Mongoose schema)" as Task {
+  +_id : ObjectId
+  +titre : String
+  +description : String
+  +dateCreation : Date
+  +echeance : Date
+  +statut : String
+  +priorite : String
+  +categorie : String
+  +etiquettes : String[]
+}
+
+class Subtask {
+  +titre : String
+  +statut : String
+  +echeance : Date
+}
+
+class Commentaire {
+  +date : Date
+  +contenu : String
+}
+
+Task *-- Subtask : "sousTaches"
+Task *-- Commentaire : "commentaires"
+
+class TaskController {
+  +getTasks(req,res)
+  +getTaskById(req,res)
+  +createTask(req,res)
+  +updateTask(req,res)
+  +deleteTask(req,res)
+}
+
+class TaskRoutes {
+  +router : Express.Router
+  +GET /api/tasks
+  +GET /api/tasks/:id
+  +POST /api/tasks
+  +PUT /api/tasks/:id
+  +DELETE /api/tasks/:id
+}
+
+TaskController --> Task : uses
+TaskRoutes --> TaskController : maps routes to
+
+note right of Task : Défini dans src/models/Task.js (schéma Mongoose)
+
+@enduml

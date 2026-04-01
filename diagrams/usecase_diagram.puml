@@ -1,0 +1,30 @@
+@startuml usecase_diagram.puml
+left to right direction
+actor "Gestionnaire de tâche" as User
+
+rectangle "Francois" {
+  (Ajouter une tâche) as Add
+  (Consulter le détail d'une tâche) as View
+  (Modifier une tâche) as Edit
+  (Supprimer une tâche) as Delete
+  (Trier / Filtrer les tâches) as Filter
+  (Rechercher une tâche) as Search
+}
+
+User --> Add
+User --> View
+User --> Edit
+User --> Delete
+User --> Filter
+User --> Search
+
+note right of Filter
+  Tri/filtre par échéance, priorité,
+  catégorie, étiquettes, avant/après
+end note
+
+note right of Search
+  Recherche texte sur titre et description
+end note
+
+@enduml
