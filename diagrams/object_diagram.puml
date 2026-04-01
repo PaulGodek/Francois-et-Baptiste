@@ -1,0 +1,35 @@
+@startuml object_diagram.puml
+' Exemple de snapshot d'une tâche avec sous-tâches et commentaire
+object t1 <<TaskInstance>> {
+  titre = "Faire TD"
+  description = "Compléter les exercices du chapitre"
+  dateCreation = "2026-04-01"
+  echeance = "2026-04-07"
+  statut = "à faire"
+  priorite = "importante"
+  categorie = "Cours"
+  etiquettes = ["urgent","exam"]
+}
+
+object st1 <<Subtask>> {
+  titre = "Lire chapitre 1"
+  statut = "terminée"
+  echeance = "2026-04-02"
+}
+
+object st2 <<Subtask>> {
+  titre = "Rédiger réponses"
+  statut = "à faire"
+  echeance = "2026-04-05"
+}
+
+object c1 <<Commentaire>> {
+  date = "2026-04-01"
+  contenu = "N'oublie pas la bibliographie"
+}
+
+t1 *-- st1
+t1 *-- st2
+t1 *-- c1
+
+@enduml
