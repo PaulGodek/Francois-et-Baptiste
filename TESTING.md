@@ -1,14 +1,4 @@
-# 📋 Guide des Tests avec Jest
-
-## Installation
-
-Les dépendances Jest et Supertest ont été ajoutées au `package.json`. Installez-les avec:
-
-```bash
-npm install
-```
-
-## Scripts disponibles
+## Scripts tests
 
 ```bash
 # Exécuter tous les tests
@@ -97,7 +87,3 @@ Pour les tests du contrôleur et des routes, les dépendances sont mockées:
 - `jest.mock('../controllers/taskController.js')` - Mock du contrôleur
 
 Cela permet de tester de manière isolée sans base de données.
-
----
-
-**ProTip**: Vous pouvez aussi ajouter des tests d'intégration véritable avec une base de données de test (MongoDB) plus tard! 🚀
